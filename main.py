@@ -50,7 +50,7 @@ driver.find_element(By.ID, 'onetrust-accept-btn-handler').click()
 driver.find_element(By.XPATH, '/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-category-selector/div/div[3]/div/a[1]').click()
 
 driver.find_element(By.ID, 'headline').send_keys(titleProduct)
-time.sleep(4)
+time.sleep(10)
 driver.find_element(By.XPATH, '//*[@id="objectType"]/div/div/div/div[1]').click()
 time.sleep(1)
 driver.find_element(By.XPATH, '//*[@id="objectType"]/div/tsl-dropdown-list/div/div[2]/ul/li[7]').click()
