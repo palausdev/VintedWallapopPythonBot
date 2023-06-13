@@ -27,6 +27,7 @@ shippingWeight = int(shippingWeight)
 shipping = obtener_dato_csv("Sites/Wallapop.csv", 1, 1)
 
 chrome_options = Options()
+#chrome_options.add_argument("--headless")
 chrome_options.add_experimental_option("detach", True)
 
 driver = webdriver.Chrome(chrome_options)
@@ -68,18 +69,23 @@ driver.find_element(By.XPATH, '//*[@id="conditions"]/div/tsl-dropdown-list/div/d
 time.sleep(2)
 driver.find_element(By.XPATH, '//*[@id="tellUs"]').send_keys(description)
 
+driver.find_element(By.XPATH, '/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[1]/label/input').send_keys('/Users/paupalacios/Downloads/Logo-TowerDefenseRuine.jpg')
+
+
 if shipping == False: driver.find_element(By.XPATH, '//*[@id="b7f8ad8f-33a6-4d13-9c6b-ce70a26fd322"]').click()
 
 if shippingWeight > 20 and shippingWeight <= 30:
     driver.find_element(By.XPATH, '//*[@id="4"]').click()
-elif shippingWeight > 10 and shippingWeight >= 20:
+elif shippingWeight > 10 and shippingWeight <= 20:
     driver.find_element(By.XPATH, '//*[@id="3"]').click()
-elif shippingWeight > 5 and shippingWeight >= 10:
+elif shippingWeight > 5 and shippingWeight <= 10:
     driver.find_element(By.XPATH, '//*[@id="2"]').click()
-elif shippingWeight > 2 and shippingWeight >= 5:
+elif shippingWeight > 2 and shippingWeight <= 5:
     driver.find_element(By.XPATH, '//*[@id="1"]').click()
-elif shippingWeight > 0 and shippingWeight >= 2:
+elif shippingWeight > 0 and shippingWeight <= 2:
     driver.find_element(By.XPATH, '//*[@id="0"]').click()
+
+driver.find_element(By.XPATH, '//*[@id="prueba"]/div[1]/walla-button').click()
 
 
 
