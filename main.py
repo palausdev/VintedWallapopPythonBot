@@ -6,27 +6,18 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from config import wallapopData
 import time
-import csv
 
-
-def obtener_dato_csv(ruta_archivo, fila, columna):
-    with open(ruta_archivo, 'r') as archivo:
-        lector_csv = csv.reader(archivo)
-        datos = list(lector_csv)
-        dato = datos[fila][columna]
-    return dato
-
-def addProduct():
-
-    email = obtener_dato_csv("Sites/Wallapop.csv", 1, 0)
-    pwd = obtener_dato_csv("Sites/Wallapop.csv", 1, 1)
-    titleProduct = obtener_dato_csv("Sites/Wallapop.csv", 1, 3)
-    price = obtener_dato_csv("Sites/Wallapop.csv", 1, 5)
-    description = obtener_dato_csv("Sites/Wallapop.csv", 1, 10)
-    shippingWeight = obtener_dato_csv("Sites/Wallapop.csv", 1, 14)
-    shippingWeight = int(shippingWeight)
-    shipping = obtener_dato_csv("Sites/Wallapop.csv", 1, 1)
+def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight):
+    #email = obtener_dato_csv("Sites/Wallapop.csv", 1, 0)
+    #pwd = obtener_dato_csv("Sites/wallapop.csv", 1, 1)
+    #titleProduct = obtener_dato_csv("Sites/wallapop.csv", 1, 3)
+    #price = obtener_dato_csv("Sites/wallapop.csv", 1, 5)
+    #description = obtener_dato_csv("Sites/wallapop.csv", 1, 10)
+    #shippingWeight = obtener_dato_csv("Sites/wallapop.csv", 1, 14)
+    shippingWeight = int(weight)
+    #shipping = obtener_dato_csv("Sites/wallapop.csv", 1, 1)
 
     chrome_options = Options()
     #chrome_options.add_argument("--headless")
@@ -41,7 +32,7 @@ def addProduct():
 
     driver.find_element(By.ID, 'email').send_keys(email)
     time.sleep(6)
-    driver.find_element(By.ID, 'password').send_keys(pwd)
+    driver.find_element(By.ID, 'password').send_keys(password)
 
     mainMenu = False
 
@@ -53,7 +44,7 @@ def addProduct():
     driver.find_element(By.ID, 'onetrust-accept-btn-handler').click()
     driver.find_element(By.XPATH, '/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-category-selector/div/div[3]/div/a[1]').click()
 
-    driver.find_element(By.ID, 'headline').send_keys(titleProduct)
+    driver.find_element(By.ID, 'headline').send_keys(title)
     time.sleep(3)
     driver.find_element(By.XPATH, '//*[@id="objectType"]/div/div/div/div[1]').click()
     time.sleep(1)
@@ -90,7 +81,15 @@ def addProduct():
     driver.find_element(By.XPATH, '//*[@id="prueba"]/div[1]/walla-button').click()
     return driver
 
-addProduct()
+
+rowcount = 0
+
+for row in open("Sites/wallapop.csv"):
+  rowcount += 1
+  #print(rowcount)
+  #print(wallapopData(rowcount)[0])
+  addProduct(wallapopData(rowcount)[0], wallapopData(rowcount)[1], wallapopData(rowcount)[2], wallapopData(rowcount)[3], wallapopData(rowcount)[4], wallapopData(rowcount)[5], wallapopData(rowcount)[6], wallapopData(rowcount)[7], wallapopData(rowcount)[8], wallapopData(rowcount)[9], wallapopData(rowcount)[10], wallapopData(rowcount)[11], wallapopData(rowcount)[12], wallapopData(rowcount)[13])
+#addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight)
 
 
 
