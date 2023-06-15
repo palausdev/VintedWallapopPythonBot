@@ -18,7 +18,7 @@ def wallapopData(fila):
     productState = obtener_dato_csv("Sites/wallapop.csv", fila, 8)
     description = obtener_dato_csv("Sites/wallapop.csv", fila, 9)
     hashtags = obtener_dato_csv("Sites/wallapop.csv", fila, 10)
-    photoFolderPath = obtener_dato_csv("Sites/wallapop.csv", 1, 11)
+    photoFolderPath = obtener_dato_csv("Sites/wallapop.csv", fila, 11)
     shipping = obtener_dato_csv("Sites/wallapop.csv", fila, 12)
     weight = obtener_dato_csv("Sites/wallapop.csv", fila, 13)
     return email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight
