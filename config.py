@@ -1149,6 +1149,19 @@ def wallapopSpecifySwitch(number, subcategoryNumber, specifyNumber):
         elif specifyNumber == '5':
             return '//*[@id="objectType2"]/div/tsl-dropdown-list/div/div[2]/ul/li[5]'
 
+def wallapopConditionSwitch(number):
+    if number == '1':
+        return '//*[@id="conditions"]/div/tsl-dropdown-list/div/div[2]/ul/li[1]'
+    elif number == '2':
+        return '//*[@id="conditions"]/div/tsl-dropdown-list/div/div[2]/ul/li[2]'
+    elif number == '3':
+        return '//*[@id="conditions"]/div/tsl-dropdown-list/div/div[2]/ul/li[3]'
+    elif number == '4':
+        return '//*[@id="conditions"]/div/tsl-dropdown-list/div/div[2]/ul/li[4]'
+    elif number == '5':
+        return '//*[@id="conditions"]/div/tsl-dropdown-list/div/div[2]/ul/li[5]'
+
+
 
 
 

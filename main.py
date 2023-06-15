@@ -6,7 +6,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwitch, wallapopSpecifySwitch
+from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwitch, wallapopSpecifySwitch, wallapopConditionSwitch
 import time
 
 def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight):
@@ -72,14 +72,15 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     #Select Specify
     if specify is not None: driver.find_element(By.XPATH, specify).click()
 
+
     time.sleep(1)
     #Price
     driver.find_element(By.ID, 'price').send_keys(price)
     time.sleep(1)
-    #Condition
+    #Click Condition
     #driver.find_element(By.XPATH, '//*[@id="conditions"]/div/div/div/div[1]').click()
     time.sleep(1)
-    #Click on new product State
+    #Select Condition
     #driver.find_element(By.XPATH, '//*[@id="conditions"]/div/tsl-dropdown-list/div/div[2]/ul/li[1]').click()
     time.sleep(2)
     #Description
@@ -112,10 +113,8 @@ rowcount = 0
 
 for row in open("Sites/wallapop.csv"):
   rowcount += 1
-  #print(rowcount)
-  #print(wallapopData(rowcount)[0])
-  addProduct(wallapopData(rowcount)[0], wallapopData(rowcount)[1], wallapopData(rowcount)[2], wallapopData(rowcount)[3], wallapopData(rowcount)[4], wallapopCategorySwitch(wallapopData(rowcount)[5]), wallapopSubcategorySwitch(wallapopData(rowcount)[5], wallapopData(rowcount)[6]), wallapopSpecifySwitch(wallapopData(rowcount)[5], wallapopData(rowcount)[6], wallapopData(rowcount)[7]), wallapopData(rowcount)[8], wallapopData(rowcount)[9], wallapopData(rowcount)[10], wallapopData(rowcount)[11], wallapopData(rowcount)[12], wallapopData(rowcount)[13])
-#addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight)
+  addProduct(wallapopData(rowcount)[0], wallapopData(rowcount)[1], wallapopData(rowcount)[2], wallapopData(rowcount)[3], wallapopData(rowcount)[4], wallapopCategorySwitch(wallapopData(rowcount)[5]), wallapopSubcategorySwitch(wallapopData(rowcount)[5], wallapopData(rowcount)[6]), wallapopSpecifySwitch(wallapopData(rowcount)[5], wallapopData(rowcount)[6], wallapopData(rowcount)[7]), wallapopConditionSwitch(wallapopData(rowcount)[8]), wallapopData(rowcount)[9], wallapopData(rowcount)[10], wallapopData(rowcount)[11], wallapopData(rowcount)[12], wallapopData(rowcount)[13])
+# addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight)
 
 
 
