@@ -78,13 +78,13 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     driver.find_element(By.ID, 'price').send_keys(price)
     time.sleep(1)
     #Click Condition
-    #driver.find_element(By.XPATH, '//*[@id="conditions"]/div/div/div/div[1]').click()
+    driver.find_element(By.XPATH, '//*[@id="conditions"]/div/div/div/div[1]').click()
     time.sleep(1)
     #Select Condition
-    #driver.find_element(By.XPATH, '//*[@id="conditions"]/div/tsl-dropdown-list/div/div[2]/ul/li[1]').click()
+    driver.find_element(By.XPATH, productState).click()
     time.sleep(2)
     #Description
-    #driver.find_element(By.XPATH, '//*[@id="tellUs"]').send_keys(description)
+    driver.find_element(By.XPATH, '//*[@id="tellUs"]').send_keys(description)
 
     #Adding photo
     #driver.find_element(By.XPATH, '/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[1]/label/input').send_keys('/Users/paupalacios/Downloads/Logo-TowerDefenseRuine.jpg')
