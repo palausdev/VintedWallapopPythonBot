@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwitch, wallapopSpecifySwitch, wallapopConditionSwitch
 import time
+import os
 
 def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight):
     #email = obtener_dato_csv("Sites/Wallapop.csv", 1, 0)
@@ -81,10 +82,25 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     driver.find_element(By.XPATH, '//*[@id="conditions"]/div/div/div/div[1]').click()
     time.sleep(1)
     #Select Condition
-    driver.find_element(By.XPATH, productState).click()
+    driver.find_element(By.XPATH, '//*[@id="conditions"]/div/tsl-dropdown-list/div/div[2]/ul/li[1]').click()
     time.sleep(2)
     #Description
     driver.find_element(By.XPATH, '//*[@id="tellUs"]').send_keys(description)
+    time.sleep(2)
+    photoFolder = photoFolderPath
+    contenido = os.listdir(photoFolder)
+    #images = []
+    images = 1
+    for file in contenido:
+        if os.path.isfile(os.path.join(photoFolder, file)) and file.endswith('.jpg'):
+            print('Images before insert photo ' + images)
+            driver.find_element(By.XPATH,
+                                '/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[' + str(images) + ']/label/input').send_keys(
+                photoFolderPath + '/' + file)
+            ++images
+            print('Image after insert photo ' + images)
+            #images.append(file)
+    #print(images)
 
     #Adding photo
     #driver.find_element(By.XPATH, '/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[1]/label/input').send_keys('/Users/paupalacios/Downloads/Logo-TowerDefenseRuine.jpg')

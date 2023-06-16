@@ -23,6 +23,9 @@ def wallapopData(fila):
     weight = obtener_dato_csv("Sites/wallapop.csv", fila, 13)
     return email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight
 
+# /html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[1]/label/input
+# /html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[2]/label/input
+
 def wallapopCategorySwitch(number):
     if number == '1':
         return '//*[@id="category"]/div/tsl-dropdown-list/div/div[2]/ul/li[1]'
