@@ -93,12 +93,12 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     images = 1
     for file in contenido:
         if os.path.isfile(os.path.join(photoFolder, file)) and file.endswith('.jpg'):
-            print('Images before insert photo ' + images)
+            print(f'Images before insert photo {images}')
             driver.find_element(By.XPATH,
-                                '/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[' + str(images) + ']/label/input').send_keys(
+                                f'/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[{str(images)}]/label/input').send_keys(
                 photoFolderPath + '/' + file)
-            ++images
-            print('Image after insert photo ' + images)
+            images += 1
+            print(f'Image after insert photo {images}')
             #images.append(file)
     #print(images)
 
