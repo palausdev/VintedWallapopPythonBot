@@ -11,14 +11,7 @@ import time
 import os
 
 def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight):
-    #email = obtener_dato_csv("Sites/Wallapop.csv", 1, 0)
-    #pwd = obtener_dato_csv("Sites/wallapop.csv", 1, 1)
-    #titleProduct = obtener_dato_csv("Sites/wallapop.csv", 1, 3)
-    #price = obtener_dato_csv("Sites/wallapop.csv", 1, 5)
-    #description = obtener_dato_csv("Sites/wallapop.csv", 1, 10)
-    #shippingWeight = obtener_dato_csv("Sites/wallapop.csv", 1, 14)
     shippingWeight = int(weight)
-    #shipping = obtener_dato_csv("Sites/wallapop.csv", 1, 1)
 
     chrome_options = Options()
     #chrome_options.add_argument("--headless")
@@ -99,11 +92,6 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
                 photoFolderPath + '/' + file)
             images += 1
             print(f'Image after insert photo {images}')
-            #images.append(file)
-    #print(images)
-
-    #Adding photo
-    #driver.find_element(By.XPATH, '/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[1]/label/input').send_keys('/Users/paupalacios/Downloads/Logo-TowerDefenseRuine.jpg')
 
     #Condition to click on shipping button
     if shipping == False: driver.find_element(By.XPATH, '//*[@id="b7f8ad8f-33a6-4d13-9c6b-ce70a26fd322"]').click()
