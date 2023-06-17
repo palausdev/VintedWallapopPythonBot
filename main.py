@@ -23,12 +23,25 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     time.sleep(1)
 
     driver.find_element(By.CLASS_NAME,'Welcome__btn-go-login-form').click()
-    #Email
-    driver.find_element(By.ID, 'email').send_keys(email)
+
+
+    try:
+        # Email
+        driver.find_element(By.ID, 'email').send_keys(email)
+    except:
+        print('\033[91m Email Failed!')
+
     print('\033[92m Email Inserted Correctly!')
     time.sleep(6)
-    #Password
-    driver.find_element(By.ID, 'password').send_keys(password)
+
+    try:
+        # Password
+        driver.find_element(By.ID, 'password').send_keys(password)
+    except:
+        print('\033[91m Password Failed!')
+
+    print('\033[92m Password Inserted Correctly!')
+
 
     mainMenu = False
 
