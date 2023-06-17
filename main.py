@@ -3,14 +3,28 @@
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
+from pypresence import Presence
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwitch, wallapopSpecifySwitch, wallapopConditionSwitch
 import time
 import os
+import datetime
 
+client_id = "1119565049208508456"
+RPC = Presence(client_id)
+
+RPC.connect()
+
+RPC.update(
+    state="Uploading products! | Check our recent news on Twitter!",
+    large_image="snapsell",
+    buttons=[{"label": "Check It Out!", "url": "https://twitter.com/sutypalaus"}]
+)
+print('\033[95m Starting...')
 def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight):
+    hora_inicio = datetime.datetime.now()
     shippingWeight = int(weight)
 
     chrome_options = Options()
@@ -22,31 +36,40 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     driver.get("https://es.wallapop.com/login")
     time.sleep(1)
 
+    print('\033[96m Login...')
     driver.find_element(By.CLASS_NAME,'Welcome__btn-go-login-form').click()
 
+    print('\033[93m Inserting Email...')
+    emailBool = False
+    while emailBool == False:
+        try:
+            # Email
+            driver.find_element(By.ID, 'email').send_keys(email)
+            print('\033[92m Email Inserted Correctly!')
+            emailBool = True
+        except:
+            print('\033[91m Email Failed!')
 
-    try:
-        # Email
-        driver.find_element(By.ID, 'email').send_keys(email)
-    except:
-        print('\033[91m Email Failed!')
+    time.sleep(2)
 
-    print('\033[92m Email Inserted Correctly!')
-    time.sleep(6)
-
-    try:
-        # Password
-        driver.find_element(By.ID, 'password').send_keys(password)
-    except:
-        print('\033[91m Password Failed!')
-
-    print('\033[92m Password Inserted Correctly!')
+    print('\033[93m Inserting Password...')
+    passwordBool = False
+    while passwordBool == False:
+        try:
+            # Password
+            driver.find_element(By.ID, 'password').send_keys(password)
+            print('\033[92m Password Inserted Correctly!')
+            passwordBool == True
+            break
+        except:
+            print('\033[91m Password Failed!')
 
 
     mainMenu = False
-
     while mainMenu == False:
         if driver.current_url == 'https://es.wallapop.com/wall': mainMenu = True
+
+    print('\033[96m Logged in!')
 
     driver.get('https://es.wallapop.com/app/catalog/upload')
     time.sleep(2)
@@ -55,8 +78,14 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     #Click on option to sell product
     driver.find_element(By.XPATH, '/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-category-selector/div/div[3]/div/a[1]').click()
 
-    #Title
-    driver.find_element(By.ID, 'headline').send_keys(title)
+    print('\033[93m Inserting Title...')
+    try:
+        #Title
+        driver.find_element(By.ID, 'headline').send_keys(title)
+        print('\033[92m Title Inserted Correctly!')
+    except:
+        print('\033[91m Title Input Failed!')
+
     time.sleep(3)
     #Click Category
     driver.find_element(By.XPATH, '//*[@id="category"]/div').click()
@@ -100,12 +129,10 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     images = 1
     for file in contenido:
         if os.path.isfile(os.path.join(photoFolder, file)) and file.endswith('.jpg'):
-            print(f'Images before insert photo {images}')
             driver.find_element(By.XPATH,
                                 f'/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[{str(images)}]/label/input').send_keys(
                 photoFolderPath + '/' + file)
             images += 1
-            print(f'Image after insert photo {images}')
 
     #Condition to click on shipping button
     if shipping == False: driver.find_element(By.XPATH, '//*[@id="b7f8ad8f-33a6-4d13-9c6b-ce70a26fd322"]').click()
@@ -123,7 +150,17 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
         driver.find_element(By.XPATH, '//*[@id="0"]').click()
 
     #Publish product button
-    driver.find_element(By.XPATH, '//*[@id="prueba"]/div[1]/walla-button').click()
+    print('\033[93m Uploading Product...')
+    try:
+        driver.find_element(By.XPATH, '//*[@id="prueba"]/div[1]/walla-button').click()
+        print('\033[96m Product Uploaded Successfully!')
+    except:
+        print('\033[91m Product Upload Failed!')
+
+    segundos_transcurridos = (datetime.datetime.now() - hora_inicio).total_seconds()
+
+    print(f'\033[95m Upload time: {segundos_transcurridos}')
+
     return driver
 
 
