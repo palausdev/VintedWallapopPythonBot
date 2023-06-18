@@ -1,7 +1,9 @@
 from pypresence import Presence
 from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwitch, wallapopSpecifySwitch, wallapopConditionSwitch
-import requests,json
+import requests,json,sys
 from wallapop import addProduct
+
+sys.stdout.write("\x1b]2;test\x07")
 
 client_id = "1119565049208508456"
 RPC = Presence(client_id)
@@ -25,6 +27,15 @@ with open(json_file, 'r') as file:
 # Obtener el valor de la clave "webhook"
 webhook_value = data["webhook"]
 key_value = data["key"]
+
+print("---------------------------")
+print("Select an option:")
+print("[1] Wallapop")
+print("[2] Vinted")
+print("[3] Config")
+print("[0] Exit")
+print("---------------------------")
+option = input(">> ")
 
 def authKey(key):
     url = f"https://api.whop.com/api/v2/memberships/{key}/validate_license"
