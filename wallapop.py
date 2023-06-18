@@ -4,8 +4,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time, os, datetime
 
-def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight):
-    discord = Discord(url="https://discord.com/api/webhooks/1119628512597377024/KCYXUjQ3oR_vuxEt65qJd3_iMPA6_sNGTg-4mCbIvrktwEkUjSl8xGh3xCksOvllUGAs")
+def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight,webhook):
+    discord = Discord(url=webhook)
     shippingWeight = int(weight)
 
     chrome_options = Options()
@@ -52,7 +52,6 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
 
     print('\033[96m Logged in!')
 
-    hora_inicio = datetime.datetime.now()
     driver.get('https://es.wallapop.com/app/catalog/upload')
     time.sleep(2)
     #Accept private settings button
@@ -69,93 +68,172 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
         except:
             print('\033[93m Trying to access the list...')
 
-    print('\033[93m Inserting Title...')
+    hora_inicio = datetime.datetime.now()
+    print('\033[93m Uploading Product...[1/15]')
     try:
         #Title
         driver.find_element(By.ID, 'headline').send_keys(title)
-        print('\033[92m Title Inserted Correctly!')
+        print('\033[92m Success![1/15]')
     except:
-        print('\033[91m Title Input Failed!')
+        print('\033[91m Error! Trying again...[1/15]')
 
     time.sleep(2)
-    #Click Category
-    driver.find_element(By.XPATH, '//*[@id="category"]/div').click()
+
+    print('\033[93m Uploading Product...[2/15]')
+    try:
+        # Click Category
+        driver.find_element(By.XPATH, '//*[@id="category"]/div').click()
+        print('\033[92m Success![2/15]')
+    except:
+        print('\033[91m Error! Trying again...[2/15]')
+
     #time.sleep(1)
-    #Select Category
-    driver.find_element(By.XPATH, category).click()
+
+    print('\033[93m Uploading Product...[3/15]')
+    try:
+        # Select Category
+        driver.find_element(By.XPATH, category).click()
+        print('\033[92m Success![3/15]')
+    except:
+        print('\033[91m Error! Trying again...[3/15]')
+
     #time.sleep(1)
-    #Click Subcategory
-    driver.find_element(By.XPATH, '//*[@id="objectType"]/div').click()
+
+    print('\033[93m Uploading Product...[4/15]')
+    try:
+        # Click Subcategory
+        driver.find_element(By.XPATH, '//*[@id="objectType"]/div').click()
+        print('\033[92m Success![4/15]')
+    except:
+        print('\033[91m Error! Trying again...[4/15]')
+
     #time.sleep(1)
 
     subcategoryBool = False
     while subcategoryBool == False:
-        print('\033[93m Selecting Subcategory...')
+        print('\033[93m Uploading Product...[5/15]')
         try:
             # Select SubCategory
             if subcategory is not None: driver.find_element(By.XPATH, subcategory).click()
-            print('\033[92m Subcategory Selected Correctly!')
+            print('\033[92m Success![5/15]')
             break
         except:
-            print('\033[91m Select Subcategory Failed!')
+            print('\033[91m Error! Trying again...[5/15]')
 
     #time.sleep(1)
 
-    #Click Specify
-    driver.find_element(By.XPATH, '//*[@id="objectType2"]/div/div/div/div[1]').click()
+    print('\033[93m Uploading Product...[6/15]')
+    try:
+        # Click Specify
+        driver.find_element(By.XPATH, '//*[@id="objectType2"]/div/div/div/div[1]').click()
+        print('\033[92m Success![6/15]')
+    except:
+        print('\033[91m Error! Trying again...[6/15]')
+
     #time.sleep(1)
 
-    #Select Specify
-    if specify is not None: driver.find_element(By.XPATH, specify).click()
+    print('\033[93m Uploading Product...[7/15]')
+    try:
+        # Select Specify
+        if specify is not None: driver.find_element(By.XPATH, specify).click()
+        print('\033[92m Success![7/15]')
+    except:
+        print('\033[91m Error! Trying again...[7/15]')
+
+    #time.sleep(1)
+
+    print('\033[93m Uploading Product...[8/15]')
+    try:
+        # Price
+        driver.find_element(By.ID, 'price').send_keys(price)
+        print('\033[92m Success![8/15]')
+    except:
+        print('\033[91m Error! Trying again...[8/15]')
 
 
     #time.sleep(1)
-    #Price
-    driver.find_element(By.ID, 'price').send_keys(price)
+
+    print('\033[93m Uploading Product...[9/15]')
+    try:
+        # Click Condition
+        driver.find_element(By.XPATH, '//*[@id="conditions"]/div/div/div/div[1]').click()
+        print('\033[92m Success![9/15]')
+    except:
+        print('\033[91m Error! Trying again...[9/15]')
+
     #time.sleep(1)
-    #Click Condition
-    driver.find_element(By.XPATH, '//*[@id="conditions"]/div/div/div/div[1]').click()
-    #time.sleep(1)
-    #Select Condition
-    driver.find_element(By.XPATH, productState).click()
+
+    print('\033[93m Uploading Product...[10/15]')
+    try:
+        # Select Condition
+        driver.find_element(By.XPATH, productState).click()
+        print('\033[92m Success![10/15]')
+    except:
+        print('\033[91m Error! Trying again...[10/15]')
+
     #time.sleep(2)
-    #Description
-    driver.find_element(By.XPATH, '//*[@id="tellUs"]').send_keys(description)
+
+    print('\033[93m Uploading Product...[11/15]')
+    try:
+        # Description
+        driver.find_element(By.XPATH, '//*[@id="tellUs"]').send_keys(description)
+        print('\033[92m Success![11/15]')
+    except:
+        print('\033[91m Error! Trying again...[11/15]')
+
     #time.sleep(2)
     photoFolder = photoFolderPath
     contenido = os.listdir(photoFolder)
-    #images = []
     images = 1
-    for file in contenido:
-        if os.path.isfile(os.path.join(photoFolder, file)) and file.endswith('.jpg'):
-            driver.find_element(By.XPATH,
-                                f'/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[{str(images)}]/label/input').send_keys(
-                photoFolderPath + '/' + file)
-            images += 1
+    print('\033[93m Uploading Product...[12/15]')
+    try:
+        for file in contenido:
+            if os.path.isfile(os.path.join(photoFolder, file)) and file.endswith('.jpg'):
+                print(f'\033[93m Uploading Photo {images}')
+                driver.find_element(By.XPATH,
+                                    f'/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[{str(images)}]/label/input').send_keys(
+                    photoFolderPath + '/' + file)
+                images += 1
+        print('\033[92m Success![12/15]')
+    except:
+        print('\033[91m Error! Trying again...[12/15]')
 
-    #Condition to click on shipping button
-    if shipping == False: driver.find_element(By.XPATH, '//*[@id="b7f8ad8f-33a6-4d13-9c6b-ce70a26fd322"]').click()
+    print('\033[93m Uploading Product...[13/15]')
+    try:
+        # Condition to click on shipping button
+        if shipping == False: driver.find_element(By.XPATH, '//*[@id="b7f8ad8f-33a6-4d13-9c6b-ce70a26fd322"]').click()
+        print('\033[92m Success![13/15]')
+    except:
+        print('\033[91m Error! Trying again...[13/15]')
+
 
     time.sleep(1)
-    #Condition to select the package weight
-    if shippingWeight > 20 and shippingWeight <= 30:
-        driver.find_element(By.XPATH, '//*[@id="4"]').click()
-    elif shippingWeight > 10 and shippingWeight <= 20:
-        driver.find_element(By.XPATH, '//*[@id="3"]').click()
-    elif shippingWeight > 5 and shippingWeight <= 10:
-        driver.find_element(By.XPATH, '//*[@id="2"]').click()
-    elif shippingWeight > 2 and shippingWeight <= 5:
-        driver.find_element(By.XPATH, '//*[@id="1"]').click()
-    elif shippingWeight > 0 and shippingWeight <= 2:
-        driver.find_element(By.XPATH, '//*[@id="0"]').click()
+
+    print('\033[93m Uploading Product...[14/15]')
+    try:
+        # Condition to select the package weight
+        if shippingWeight > 20 and shippingWeight <= 30:
+            driver.find_element(By.XPATH, '//*[@id="4"]').click()
+        elif shippingWeight > 10 and shippingWeight <= 20:
+            driver.find_element(By.XPATH, '//*[@id="3"]').click()
+        elif shippingWeight > 5 and shippingWeight <= 10:
+            driver.find_element(By.XPATH, '//*[@id="2"]').click()
+        elif shippingWeight > 2 and shippingWeight <= 5:
+            driver.find_element(By.XPATH, '//*[@id="1"]').click()
+        elif shippingWeight > 0 and shippingWeight <= 2:
+            driver.find_element(By.XPATH, '//*[@id="0"]').click()
+        print('\033[92m Success![14/15]')
+    except:
+        print('\033[91m Error! Trying again...[14/15]')
+
 
     #Publish product button
-    print('\033[93m Uploading Product...')
+    print('\033[93m Uploading Product...[15/15]')
     try:
         segundos_transcurridos = (datetime.datetime.now() - hora_inicio).total_seconds()
         segundos_transcurridos = str(round(segundos_transcurridos, 2))
         driver.find_element(By.XPATH, '//*[@id="prueba"]/div[1]/walla-button').click()
-        print('\033[96m Product Uploaded Successfully!')
+        print('\033[96m Product Uploaded Successfully! [15/15]')
         discord.post(
             username="SnapSell",
             avatar_url="https://cdn.discordapp.com/attachments/718875492744298569/1119595752738521259/LogoSnapSell.png",
@@ -173,13 +251,9 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
                     },
                 }
             ],
-            #content=f"Product {title} Uploaded Successfully",
-
         )
     except:
         print('\033[91m Product Upload Failed!')
-
-    #segundos_transcurridos = (datetime.datetime.now() - hora_inicio).total_seconds()
 
     print(f'\033[95m Upload time: {segundos_transcurridos}')
 
