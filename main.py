@@ -4,10 +4,10 @@ import requests,json,sys
 from wallapop import addProduct
 from pyfiglet import figlet_format
 
+sys.stdout.write("\x1b]2;SnapSell - Menu\x07")
+
 result = figlet_format("SnapSell", font = "big")
 print(result)
-
-#sys.stdout.write("\x1b]2;test\x07")
 
 client_id = "1119565049208508456"
 RPC = Presence(client_id)
