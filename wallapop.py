@@ -3,8 +3,17 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time, os, datetime
+from twocaptcha import TwoCaptcha
 
 def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight,webhook):
+    #solver = TwoCaptcha('5e3539e7f14321894e6b266fb0377c17')
+
+    #result = solver.recaptcha(sitekey='6Le-wvkSVVABCPBMRTvw0Q4Muexq1bi0DJwx_mJ-',
+                              #url='https://mysite.com/page/with/recaptcha',
+                              #version='v3')
+
+    print(photoFolderPath)
+
     discord = Discord(url=webhook)
     shippingWeight = int(weight)
 
@@ -47,12 +56,12 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
         except:
             print('\033[91m Password Failed!')
 
-
     mainMenu = False
     while mainMenu == False:
         if driver.current_url == 'https://es.wallapop.com/wall': mainMenu = True
 
     print('\033[96m Logged in!')
+
 
     driver.get('https://es.wallapop.com/app/catalog/upload')
     time.sleep(2)
@@ -142,7 +151,7 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     except:
         print('\033[91m Error! Trying again...[7/15]')
 
-    #time.sleep(1)
+    time.sleep(1)
 
     print('\033[93m Uploading Product...[8/15]')
     try:
@@ -153,17 +162,17 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
         print('\033[91m Error! Trying again...[8/15]')
 
 
-    #time.sleep(1)
+    time.sleep(1)
 
     print('\033[93m Uploading Product...[9/15]')
     try:
         # Click Condition
-        driver.find_element(By.XPATH, '//*[@id="conditions"]/div/div/div/div[1]').click()
+        driver.find_element(By.XPATH, '//*[@id="conditions"]/div/div/div/div[2]').click()
         print('\033[92m Success![9/15]')
     except:
         print('\033[91m Error! Trying again...[9/15]')
 
-    #time.sleep(1)
+    time.sleep(1)
 
     print('\033[93m Uploading Product...[10/15]')
     try:
@@ -194,9 +203,13 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
                 print(f'\033[93m Uploading Photo {images}')
                 driver.find_element(By.XPATH,
                                     f'/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[{str(images)}]/label/input').send_keys(
-                    photoFolderPath + '/' + file)
+                    photoFolderPath + file)
+                print(f'\033[92m Success![12/15] - {images}')
                 images += 1
-        print('\033[92m Success![12/15]')
+            else:
+                print('/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[{str(images)}]/label/input' +  photoFolderPath + file)
+                print(f'\033[91m Error! [12/15] - {images}')
+
     except:
         print('\033[91m Error! Trying again...[12/15]')
 
@@ -228,6 +241,7 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     except:
         print('\033[91m Error! Trying again...[14/15]')
 
+    time.sleep(1)
 
     #Publish product button
     print('\033[93m Uploading Product...[15/15]')
