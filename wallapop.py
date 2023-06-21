@@ -80,6 +80,7 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
             print('\033[93m Trying to access the list...')
 
     hora_inicio = datetime.datetime.now()
+    titleBool = False
     print('\033[93m Uploading Product...[1/15]')
     try:
         #Title
