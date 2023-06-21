@@ -10,7 +10,6 @@ sys.stdout.write("\x1b]2;SnapSell - Menu\x07")
 
 result = figlet_format("SnapSell", font = "big")
 
-
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 
@@ -50,6 +49,7 @@ def menu():
     print("[0] Exit")
     print("---------------------------")
 
+
 def authKey(key):
     url = f"https://api.whop.com/api/v2/memberships/{key}/validate_license"
 
@@ -63,6 +63,7 @@ def authKey(key):
     response = requests.post(url, json=payload, headers=headers)
 
     return response
+
 
 if authKey(key_value).status_code == 201:
     cls()
