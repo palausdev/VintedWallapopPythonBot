@@ -70,8 +70,8 @@ if authKey(key_value).status_code == 201:
     menu()
     option = input(">> ")
 
-    while option != 0:
-        if option == 1:
+    while option != '0':
+        if option == '1':
             print('\033[95m Starting...')
             rowcount = 0
             for row in open("Sites/wallapop.csv"):
