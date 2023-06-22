@@ -3,15 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time, os, datetime
-from twocaptcha import TwoCaptcha
 
 def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight,webhook):
-    #solver = TwoCaptcha('5e3539e7f14321894e6b266fb0377c17')
-
-    #result = solver.recaptcha(sitekey='6Le-wvkSVVABCPBMRTvw0Q4Muexq1bi0DJwx_mJ-',
-                              #url='https://mysite.com/page/with/recaptcha',
-                              #version='v3')
-
     print(photoFolderPath)
 
     discord = Discord(url=webhook)
@@ -259,7 +252,7 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
                     "title": f"Product: {title} Uploaded!",
                     "fields": [
                         {"name": "Module", "value": "Wallapop", "inline": True},
-                        {"name": "Mode", "value": "Fast Mode", "inline": True},
+                        {"name": "Mode", "value": "Save Mode", "inline": True},
                         {"name": "Upload Time", "value": f"{segundos_transcurridos}", "inline": True},
                     ],
                     "footer": {
