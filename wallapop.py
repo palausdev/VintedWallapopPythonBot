@@ -5,8 +5,6 @@ from selenium.webdriver.chrome.options import Options
 import time, os, datetime
 
 def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight,webhook):
-    print(photoFolderPath)
-
     discord = Discord(url=webhook)
     shippingWeight = int(weight)
 
@@ -222,15 +220,15 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     try:
         # Condition to select the package weight
         if shippingWeight > 20 and shippingWeight <= 30:
-            driver.find_element(By.XPATH, '//*[@id="4"]').click()
+            driver.find_element(By.XPATH, '//*[@id="weightSelector"]/div[2]/div/label[5]').click()
         elif shippingWeight > 10 and shippingWeight <= 20:
-            driver.find_element(By.XPATH, '//*[@id="3"]').click()
+            driver.find_element(By.XPATH, '//*[@id="weightSelector"]/div[2]/div/label[4]').click()
         elif shippingWeight > 5 and shippingWeight <= 10:
-            driver.find_element(By.XPATH, '//*[@id="2"]').click()
+            driver.find_element(By.XPATH, '//*[@id="weightSelector"]/div[2]/div/label[3]').click()
         elif shippingWeight > 2 and shippingWeight <= 5:
-            driver.find_element(By.XPATH, '//*[@id="1"]').click()
+            driver.find_element(By.XPATH, '//*[@id="weightSelector"]/div[2]/div/label[2]').click()
         elif shippingWeight > 0 and shippingWeight <= 2:
-            driver.find_element(By.XPATH, '//*[@id="0"]').click()
+            driver.find_element(By.XPATH, '//*[@id="weightSelector"]/div[2]/div/label[1]').click()
         print('\033[92m Success![14/15]')
     except:
         print('\033[91m Error! Trying again...[14/15]')
