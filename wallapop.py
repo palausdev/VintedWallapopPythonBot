@@ -145,6 +145,8 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
 
     time.sleep(1)
 
+    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+
     print('\033[93m Uploading Product...[8/15]')
     try:
         # Price
