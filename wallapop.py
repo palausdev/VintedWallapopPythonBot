@@ -71,49 +71,60 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
             print('\033[93m Trying to access the list...')
 
     hora_inicio = datetime.datetime.now()
-    titleBool = False
     print('\033[93m Uploading Product...[1/15]')
-    try:
-        #Title
-        driver.find_element(By.ID, 'headline').send_keys(title)
-        print('\033[92m Success![1/15]')
-    except:
-        print('\033[91m Error! Trying again...[1/15]')
+    titleBool = False
+    while titleBool == False:
+        try:
+            #Title
+            driver.find_element(By.ID, 'headline').send_keys(title)
+            print('\033[92m Success![1/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[1/15]')
 
     time.sleep(2)
 
     print('\033[93m Uploading Product...[2/15]')
-    try:
-        # Click Category
-        driver.find_element(By.XPATH, '//*[@id="category"]/div').click()
-        print('\033[92m Success![2/15]')
-    except:
-        print('\033[91m Error! Trying again...[2/15]')
+    categoryBool = False
+    while categoryBool == False:
+        try:
+            # Click Category
+            driver.find_element(By.XPATH, '//*[@id="category"]/div').click()
+            print('\033[92m Success![2/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[2/15]')
 
     #time.sleep(1)
 
     print('\033[93m Uploading Product...[3/15]')
-    try:
-        # Select Category
-        driver.find_element(By.XPATH, category).click()
-        print('\033[92m Success![3/15]')
-    except:
-        print('\033[91m Error! Trying again...[3/15]')
+    categorySelectedBool = False
+    while categorySelectedBool == False:
+        try:
+            # Select Category
+            driver.find_element(By.XPATH, category).click()
+            print('\033[92m Success![3/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[3/15]')
 
     #time.sleep(1)
 
     print('\033[93m Uploading Product...[4/15]')
-    try:
-        # Click Subcategory
-        driver.find_element(By.XPATH, '//*[@id="objectType"]/div').click()
-        print('\033[92m Success![4/15]')
-    except:
-        print('\033[91m Error! Trying again...[4/15]')
+    subcategoryBool = False
+    while subcategoryBool == False:
+        try:
+            # Click Subcategory
+            driver.find_element(By.XPATH, '//*[@id="objectType"]/div').click()
+            print('\033[92m Success![4/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[4/15]')
 
     #time.sleep(1)
 
-    subcategoryBool = False
-    while subcategoryBool == False:
+    subcategorySelectBool = False
+    while subcategorySelectBool == False:
         print('\033[93m Uploading Product...[5/15]')
         try:
             # Select SubCategory
@@ -126,22 +137,28 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     #time.sleep(1)
 
     print('\033[93m Uploading Product...[6/15]')
-    try:
-        # Click Specify
-        driver.find_element(By.XPATH, '//*[@id="objectType2"]/div/div/div/div[1]').click()
-        print('\033[92m Success![6/15]')
-    except:
-        print('\033[91m Error! Trying again...[6/15]')
+    specifyBool = False
+    while specifyBool == False:
+        try:
+            # Click Specify
+            driver.find_element(By.XPATH, '//*[@id="objectType2"]/div/div/div/div[1]').click()
+            print('\033[92m Success![6/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[6/15]')
 
     #time.sleep(1)
 
     print('\033[93m Uploading Product...[7/15]')
-    try:
-        # Select Specify
-        if specify is not None: driver.find_element(By.XPATH, specify).click()
-        print('\033[92m Success![7/15]')
-    except:
-        print('\033[91m Error! Trying again...[7/15]')
+    specifySelectBool = False
+    while specifySelectBool == False:
+        try:
+            # Select Specify
+            if specify is not None: driver.find_element(By.XPATH, specify).click()
+            print('\033[92m Success![7/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[7/15]')
 
     time.sleep(1)
 
