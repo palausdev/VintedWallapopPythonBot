@@ -165,43 +165,54 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 
     print('\033[93m Uploading Product...[8/15]')
-    try:
-        # Price
-        driver.find_element(By.ID, 'price').send_keys(price)
-        print('\033[92m Success![8/15]')
-    except:
-        print('\033[91m Error! Trying again...[8/15]')
-
+    priceBool = False
+    while priceBool == False:
+        try:
+            # Price
+            driver.find_element(By.ID, 'price').send_keys(price)
+            print('\033[92m Success![8/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[8/15]')
 
     time.sleep(1)
 
     print('\033[93m Uploading Product...[9/15]')
-    try:
-        # Click Condition
-        driver.find_element(By.XPATH, '//*[@id="conditions"]/div/div/div/div[2]').click()
-        print('\033[92m Success![9/15]')
-    except:
-        print('\033[91m Error! Trying again...[9/15]')
+    conditionBool = False
+    while conditionBool == False:
+        try:
+            # Click Condition
+            driver.find_element(By.XPATH, '//*[@id="conditions"]/div/div/div/div[2]').click()
+            print('\033[92m Success![9/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[9/15]')
 
     time.sleep(1)
 
     print('\033[93m Uploading Product...[10/15]')
-    try:
-        # Select Condition
-        driver.find_element(By.XPATH, productState).click()
-        print('\033[92m Success![10/15]')
-    except:
-        print('\033[91m Error! Trying again...[10/15]')
+    conditionSelectBool = False
+    while conditionSelectBool == False:
+        try:
+            # Select Condition
+            driver.find_element(By.XPATH, productState).click()
+            print('\033[92m Success![10/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[10/15]')
 
     #time.sleep(2)
 
     print('\033[93m Uploading Product...[11/15]')
-    try:
-        # Description
-        driver.find_element(By.XPATH, '//*[@id="tellUs"]').send_keys(description)
-        print('\033[92m Success![11/15]')
-    except:
-        print('\033[91m Error! Trying again...[11/15]')
+    descriptionBool = False
+    while descriptionBool == False:
+        try:
+            # Description
+            driver.find_element(By.XPATH, '//*[@id="tellUs"]').send_keys(description)
+            print('\033[92m Success![11/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[11/15]')
 
     #time.sleep(2)
     photoFolder = photoFolderPath
@@ -224,63 +235,74 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     except:
         print('\033[91m Error! Trying again...[12/15]')
 
-    print('\033[93m Uploading Product...[13/15]')
-    try:
-        # Condition to click on shipping button
-        if shipping == False: driver.find_element(By.XPATH, '//*[@id="b7f8ad8f-33a6-4d13-9c6b-ce70a26fd322"]').click()
-        print('\033[92m Success![13/15]')
-    except:
-        print('\033[91m Error! Trying again...[13/15]')
+    driver.execute_script("arguments[0].scrollIntoView();", driver.find_element(By.XPATH, '/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[3]/div/div[2]/div[1]'))
 
+    print('\033[93m Uploading Product...[13/15]')
+    shippingBool = False
+    while shippingBool == False:
+        try:
+            # Condition to click on shipping button
+            if shipping == False: driver.find_element(By.XPATH, '//*[@id="b7f8ad8f-33a6-4d13-9c6b-ce70a26fd322"]').click()
+            print('\033[92m Success![13/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[13/15]')
 
     time.sleep(1)
 
     print('\033[93m Uploading Product...[14/15]')
-    try:
-        # Condition to select the package weight
-        if shippingWeight > 20 and shippingWeight <= 30:
-            driver.find_element(By.XPATH, '//*[@id="weightSelector"]/div[2]/div/label[5]').click()
-        elif shippingWeight > 10 and shippingWeight <= 20:
-            driver.find_element(By.XPATH, '//*[@id="weightSelector"]/div[2]/div/label[4]').click()
-        elif shippingWeight > 5 and shippingWeight <= 10:
-            driver.find_element(By.XPATH, '//*[@id="weightSelector"]/div[2]/div/label[3]').click()
-        elif shippingWeight > 2 and shippingWeight <= 5:
-            driver.find_element(By.XPATH, '//*[@id="weightSelector"]/div[2]/div/label[2]').click()
-        elif shippingWeight > 0 and shippingWeight <= 2:
-            driver.find_element(By.XPATH, '//*[@id="weightSelector"]/div[2]/div/label[1]').click()
-        print('\033[92m Success![14/15]')
-    except:
-        print('\033[91m Error! Trying again...[14/15]')
+    weightBool = False
+    while weightBool == False:
+        try:
+            # Condition to select the package weight
+            if shippingWeight > 20 and shippingWeight <= 30:
+                driver.find_element(By.XPATH, '//*[@id="4"]').click()
+            elif shippingWeight > 10 and shippingWeight <= 20:
+                driver.find_element(By.XPATH, '//*[@id="3"]').click()
+            elif shippingWeight > 5 and shippingWeight <= 10:
+                driver.find_element(By.XPATH, '//*[@id="2"]').click()
+            elif shippingWeight > 2 and shippingWeight <= 5:
+                driver.find_element(By.XPATH, '//*[@id="1"]').click()
+            elif shippingWeight > 0 and shippingWeight <= 2:
+                driver.find_element(By.XPATH, '//*[@id="0"]').click()
+            print('\033[92m Success![14/15]')
+            break
+        except:
+            print('\033[91m Error! Trying again...[14/15]')
 
+    driver.execute_script("arguments[0].scrollIntoView();", driver.find_element(By.XPATH,'//*[@id="prueba"]'))
     time.sleep(1)
 
     #Publish product button
     print('\033[93m Uploading Product...[15/15]')
-    try:
-        segundos_transcurridos = (datetime.datetime.now() - hora_inicio).total_seconds()
-        segundos_transcurridos = str(round(segundos_transcurridos, 2))
-        driver.find_element(By.XPATH, '//*[@id="prueba"]/div[1]/walla-button').click()
-        print('\033[96m Product Uploaded Successfully! [15/15]')
-        discord.post(
-            username="SnapSell",
-            avatar_url="https://cdn.discordapp.com/attachments/718875492744298569/1119595752738521259/LogoSnapSell.png",
-            embeds=[
-                {
-                    "title": f"Product: {title} Uploaded!",
-                    "fields": [
-                        {"name": "Module", "value": "Wallapop", "inline": True},
-                        {"name": "Mode", "value": "Save Mode", "inline": True},
-                        {"name": "Upload Time", "value": f"{segundos_transcurridos}", "inline": True},
-                    ],
-                    "footer": {
-                        "text": f"SnapSell | Wallapop Module · {datetime.datetime.now()} ",
-                        "icon_url": "https://cdn.discordapp.com/attachments/718875492744298569/1119595752738521259/LogoSnapSell.png",
-                    },
-                }
-            ],
-        )
-    except:
-        print('\033[91m Product Upload Failed!')
+    publishBool = False
+    while publishBool == False:
+        try:
+            segundos_transcurridos = (datetime.datetime.now() - hora_inicio).total_seconds()
+            segundos_transcurridos = str(round(segundos_transcurridos, 2))
+            driver.find_element(By.XPATH, '//*[@id="prueba"]/div[1]/walla-button').click()
+            print('\033[96m Product Uploaded Successfully! [15/15]')
+            discord.post(
+                username="SnapSell",
+                avatar_url="https://cdn.discordapp.com/attachments/718875492744298569/1119595752738521259/LogoSnapSell.png",
+                embeds=[
+                    {
+                        "title": f"Product: {title} Uploaded!",
+                        "fields": [
+                            {"name": "Module", "value": "Wallapop", "inline": True},
+                            {"name": "Mode", "value": "Save Mode", "inline": True},
+                            {"name": "Upload Time", "value": f"{segundos_transcurridos}", "inline": True},
+                        ],
+                        "footer": {
+                            "text": f"SnapSell | Wallapop Module · {datetime.datetime.now()} ",
+                            "icon_url": "https://cdn.discordapp.com/attachments/718875492744298569/1119595752738521259/LogoSnapSell.png",
+                        },
+                    }
+                ],
+            )
+            break
+        except:
+            print('\033[91m Product Upload Failed!')
 
     print(f'\033[95m Upload time: {segundos_transcurridos}')
 
