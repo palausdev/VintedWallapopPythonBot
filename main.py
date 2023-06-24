@@ -77,14 +77,17 @@ if authKey(key_value).status_code == 201:
             rowcount = 0
             for row in open("Sites/wallapop.csv"):
                 rowcount += 1
-                addProduct(wallapopData(rowcount)[0], wallapopData(rowcount)[1], wallapopData(rowcount)[2],
-                           wallapopData(rowcount)[3], wallapopData(rowcount)[4],
-                           wallapopCategorySwitch(wallapopData(rowcount)[5]),
-                           wallapopSubcategorySwitch(wallapopData(rowcount)[5], wallapopData(rowcount)[6]),
-                           wallapopSpecifySwitch(wallapopData(rowcount)[5], wallapopData(rowcount)[6],
-                                                 wallapopData(rowcount)[7]), wallapopConditionSwitch(wallapopData(rowcount)[8]),
-                           wallapopData(rowcount)[9], wallapopData(rowcount)[10], wallapopData(rowcount)[11],
-                           wallapopData(rowcount)[12], wallapopData(rowcount)[13], webhook_value)
+                if wallapopData(rowcount)[0] == "Save" or "save":
+                    addProduct(wallapopData(rowcount)[1], wallapopData(rowcount)[2], wallapopData(rowcount)[3],
+                               wallapopData(rowcount)[4], wallapopData(rowcount)[5],
+                               wallapopCategorySwitch(wallapopData(rowcount)[6]),
+                               wallapopSubcategorySwitch(wallapopData(rowcount)[6], wallapopData(rowcount)[7]),
+                               wallapopSpecifySwitch(wallapopData(rowcount)[6], wallapopData(rowcount)[7],
+                                                     wallapopData(rowcount)[8]), wallapopConditionSwitch(wallapopData(rowcount)[9]),
+                               wallapopData(rowcount)[10], wallapopData(rowcount)[11], wallapopData(rowcount)[12],
+                               wallapopData(rowcount)[13], wallapopData(rowcount)[14], webhook_value)
+                elif wallapopData(rowcount)[0] == "Fast" or "fast":
+                    print('In maintenance')
 
     quit()
 elif authKey(key_value).status_code == 401:
