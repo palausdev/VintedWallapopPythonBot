@@ -4,7 +4,7 @@ import requests,json,sys, os
 from wallapop import addProduct
 from pyfiglet import figlet_format
 
-print("Validating Key...")
+
 
 sys.stdout.write("\x1b]2;SnapSell - Menu\x07")
 
@@ -64,6 +64,7 @@ def authKey(key):
 
     return response
 
+print("Validating Key...")
 
 if authKey(key_value).status_code == 201:
     cls()
