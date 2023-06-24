@@ -7,21 +7,22 @@ def obtener_dato_csv(ruta_archivo, fila, columna):
     return dato
 
 def wallapopData(fila):
-    email = obtener_dato_csv("Sites/wallapop.csv", fila, 0)
-    password = obtener_dato_csv("Sites/wallapop.csv", fila, 1)
-    title = obtener_dato_csv("Sites/wallapop.csv", fila , 2)
-    price = obtener_dato_csv("Sites/wallapop.csv", fila, 3)
-    currency = obtener_dato_csv("Sites/wallapop.csv", fila, 4)
-    category = obtener_dato_csv("Sites/wallapop.csv", fila, 5)
-    subcategory = obtener_dato_csv("Sites/wallapop.csv", fila, 6)
-    specify = obtener_dato_csv("Sites/wallapop.csv", fila, 7)
-    hashtags = obtener_dato_csv("Sites/wallapop.csv", fila, 8)
-    productState = obtener_dato_csv("Sites/wallapop.csv", fila, 9)
-    description = obtener_dato_csv("Sites/wallapop.csv", fila, 10)
-    photoFolderPath = obtener_dato_csv("Sites/wallapop.csv", fila, 11)
-    shipping = obtener_dato_csv("Sites/wallapop.csv", fila, 12)
-    weight = obtener_dato_csv("Sites/wallapop.csv", fila, 13)
-    return email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight
+    mode = obtener_dato_csv("Sites/wallapop.csv", fila, 0)
+    email = obtener_dato_csv("Sites/wallapop.csv", fila, 1)
+    password = obtener_dato_csv("Sites/wallapop.csv", fila, 2)
+    title = obtener_dato_csv("Sites/wallapop.csv", fila , 3)
+    price = obtener_dato_csv("Sites/wallapop.csv", fila, 4)
+    currency = obtener_dato_csv("Sites/wallapop.csv", fila, 5)
+    category = obtener_dato_csv("Sites/wallapop.csv", fila, 6)
+    subcategory = obtener_dato_csv("Sites/wallapop.csv", fila, 7)
+    specify = obtener_dato_csv("Sites/wallapop.csv", fila, 8)
+    hashtags = obtener_dato_csv("Sites/wallapop.csv", fila, 9)
+    productState = obtener_dato_csv("Sites/wallapop.csv", fila, 10)
+    description = obtener_dato_csv("Sites/wallapop.csv", fila, 11)
+    photoFolderPath = obtener_dato_csv("Sites/wallapop.csv", fila, 12)
+    shipping = obtener_dato_csv("Sites/wallapop.csv", fila, 13)
+    weight = obtener_dato_csv("Sites/wallapop.csv", fila, 14)
+    return mode, email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight
 
 # /html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[1]/label/input
 # /html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[2]/label/input
