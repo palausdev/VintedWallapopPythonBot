@@ -229,7 +229,6 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
                 print(f'\033[92m Success![12/15] - {images}')
                 images += 1
             else:
-                print('/html/body/tsl-root/tsl-private/div/div/div/tsl-upload/div/div/tsl-upload-product/form/div[2]/tsl-drop-area/div/div[2]/div/div[{str(images)}]/label/input' +  photoFolderPath + file)
                 print(f'\033[91m Error! [12/15] - {images}')
 
     except:
@@ -282,6 +281,14 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
             segundos_transcurridos = str(round(segundos_transcurridos, 2))
             driver.find_element(By.XPATH, '//*[@id="prueba"]/div[1]/walla-button').click()
             print('\033[96m Product Uploaded Successfully! [15/15]')
+            break
+        except:
+            print('\033[91m Product Upload Failed!')
+
+    publishUrlBool = False
+    while publishUrlBool == False:
+        if driver.current_url.__contains__('/app/catalog/published;created=true;'):
+            publishUrlBool = True
             discord.post(
                 username="SnapSell",
                 avatar_url="https://cdn.discordapp.com/attachments/718875492744298569/1119595752738521259/LogoSnapSell.png",
@@ -300,9 +307,6 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
                     }
                 ],
             )
-            break
-        except:
-            print('\033[91m Product Upload Failed!')
 
     print(f'\033[95m Upload time: {segundos_transcurridos}')
 
