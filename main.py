@@ -4,8 +4,6 @@ import requests,json,sys, os
 from wallapop import addProduct
 from pyfiglet import figlet_format
 
-
-
 sys.stdout.write("\x1b]2;SnapSell - Menu\x07")
 
 result = figlet_format("SnapSell", font = "big")
