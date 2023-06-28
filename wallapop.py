@@ -1,8 +1,13 @@
 from discordwebhook import Discord
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support import expected_conditions as EC
 import time, os, datetime
+
+from selenium.webdriver.support.wait import WebDriverWait
+
 
 def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight,webhook):
     discord = Discord(url=webhook)
@@ -46,6 +51,19 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
             break
         except:
             print('\033[91m Password Failed!')
+
+    driver.switch_to.frame(0)
+    captchaBool = False
+    while captchaBool == False:
+        time.sleep(2)
+        try:
+            elemento = driver.find_element(By.ID, 'recaptcha-anchor')
+            valor_aria_checked = elemento.get_attribute('aria-checked')
+            if valor_aria_checked == 'true':
+                print('\033[96m Captcha Resolved!')
+                break
+        except:
+            print('\033[93m Waiting Captcha Resolve...')
 
     mainMenu = False
     while mainMenu == False:
