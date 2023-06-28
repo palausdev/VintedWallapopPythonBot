@@ -1,6 +1,6 @@
 from pypresence import Presence
 from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwitch, wallapopSpecifySwitch, wallapopConditionSwitch
-import requests,json,sys, os
+import requests, json, sys, os
 from wallapop import addProduct
 from pyfiglet import figlet_format
 
