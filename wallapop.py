@@ -140,10 +140,15 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     specifyBool = False
     while specifyBool == False:
         try:
-            # Click Specify
-            driver.find_element(By.XPATH, '//*[@id="objectType2"]/div/div/div/div[1]').click()
-            print('\033[92m Success![6/15]')
-            break
+            if specify is not None:
+                # Click Specify
+                driver.find_element(By.XPATH, '//*[@id="objectType2"]/div/div/div/div[1]').click()
+                specifyBool = True
+                print('\033[92m Success![6/15]')
+                break
+            else:
+                print('\033[92m Success![6/15]')
+                break
         except:
             print('\033[91m Error! Trying again...[6/15]')
 
@@ -154,9 +159,13 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     while specifySelectBool == False:
         try:
             # Select Specify
-            if specify is not None: driver.find_element(By.XPATH, specify).click()
-            print('\033[92m Success![7/15]')
-            break
+            if specifyBool == True:
+                driver.find_element(By.XPATH, specify).click()
+                print('\033[92m Success![7/15]')
+                break
+            else:
+                print('\033[92m Success![7/15]')
+                break
         except:
             print('\033[91m Error! Trying again...[7/15]')
 
