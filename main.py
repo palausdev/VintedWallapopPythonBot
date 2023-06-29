@@ -1,7 +1,7 @@
 from pypresence import Presence
 from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwitch, wallapopSpecifySwitch, wallapopConditionSwitch
 import requests, json, sys, os
-from wallapop import addProduct
+from wallapop import addProductSM
 from pyfiglet import figlet_format
 
 sys.stdout.write("\x1b]2;SnapSell - Menu\x07")
@@ -76,7 +76,7 @@ if authKey(key_value).status_code == 201:
             for row in open("Sites/wallapop.csv"):
                 rowcount += 1
                 if wallapopData(rowcount)[0] == "Save" or "save":
-                    addProduct(wallapopData(rowcount)[1], wallapopData(rowcount)[2], wallapopData(rowcount)[3],
+                    addProductSM(wallapopData(rowcount)[1], wallapopData(rowcount)[2], wallapopData(rowcount)[3],
                                wallapopData(rowcount)[4], wallapopData(rowcount)[5],
                                wallapopCategorySwitch(wallapopData(rowcount)[6]),
                                wallapopSubcategorySwitch(wallapopData(rowcount)[6], wallapopData(rowcount)[7]),
