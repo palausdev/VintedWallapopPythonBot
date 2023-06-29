@@ -1,7 +1,7 @@
 from pypresence import Presence
 from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwitch, wallapopSpecifySwitch, wallapopConditionSwitch
 import requests, json, sys, os
-from wallapop import addProductSM
+from wallapop import addProductSM, addProductFM
 from pyfiglet import figlet_format
 
 sys.stdout.write("\x1b]2;SnapSell - Menu\x07")
@@ -86,6 +86,15 @@ if authKey(key_value).status_code == 201:
                                wallapopData(rowcount)[13], wallapopData(rowcount)[14], webhook_value)
                 elif wallapopData(rowcount)[0] == "Fast" or "fast":
                     print('In maintenance')
+                    addProductFM(wallapopData(rowcount)[1], wallapopData(rowcount)[2], wallapopData(rowcount)[3],
+                                 wallapopData(rowcount)[4], wallapopData(rowcount)[5],
+                                 wallapopCategorySwitch(wallapopData(rowcount)[6]),
+                                 wallapopSubcategorySwitch(wallapopData(rowcount)[6], wallapopData(rowcount)[7]),
+                                 wallapopSpecifySwitch(wallapopData(rowcount)[6], wallapopData(rowcount)[7],
+                                                       wallapopData(rowcount)[8]),
+                                 wallapopConditionSwitch(wallapopData(rowcount)[9]),
+                                 wallapopData(rowcount)[10], wallapopData(rowcount)[11], wallapopData(rowcount)[12],
+                                 wallapopData(rowcount)[13], wallapopData(rowcount)[14], webhook_value)
 
     quit()
 elif authKey(key_value).status_code == 401:
