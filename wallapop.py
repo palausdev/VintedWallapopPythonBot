@@ -12,15 +12,13 @@ from selenium.webdriver.support.wait import WebDriverWait
 def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight,webhook):
     discord = Discord(url=webhook)
     shippingWeight = int(weight)
-
     chrome_options = Options()
-    #chrome_options.add_argument("--headless")
-    #chrome_options.headless = True
+    chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument("--log-level=3")
     #  En este caso, se está excluyendo el interruptor 'enable-logging', que generalmente está habilitado para registrar mensajes de registro en la consola del navegador.
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
     # Chrome no se cerrará automáticamente cuando el script de Selenium termine de ejecutarse.
-    chrome_options.add_experimental_option("detach", True)
+    #chrome_options.add_experimental_option("detach", True)
 
     driver = webdriver.Chrome(chrome_options)
 
@@ -28,7 +26,6 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     time.sleep(1)
 
     print('\033[96m Login...')
-    #driver.find_element(By.CLASS_NAME,'Welcome__btn-go-login-form').click()
     loggingButtonBool = False
     while loggingButtonBool == False:
         try:
@@ -70,7 +67,7 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
 
     captchaBool = False
     while captchaBool == False:
-        time.sleep(2)
+        time.sleep(1.5)
         try:
             elemento = driver.find_element(By.ID, 'recaptcha-anchor')
             valor_aria_checked = elemento.get_attribute('aria-checked')
@@ -82,7 +79,7 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
         except:
             print('\033[93m Waiting Captcha Resolve...')
 
-    time.sleep(2)
+    time.sleep(1)
 
     driver.switch_to.default_content()
     driver.find_element(By.XPATH, '//*[@id="sign-in-wallapop"]').click()
@@ -92,7 +89,6 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
         if driver.current_url == 'https://es.wallapop.com/wall': mainMenu = True
 
     print('\033[96m Logged in!')
-
 
     driver.get('https://es.wallapop.com/app/catalog/upload')
     time.sleep(2)
