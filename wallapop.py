@@ -361,6 +361,7 @@ def addProductFM(email, password, title, price, currency, category, subcategory,
     discord = Discord(url=webhook)
     shippingWeight = int(weight)
     chrome_options = Options()
+    chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument("--log-level=3")
     #  En este caso, se está excluyendo el interruptor 'enable-logging', que generalmente está habilitado para registrar mensajes de registro en la consola del navegador.
