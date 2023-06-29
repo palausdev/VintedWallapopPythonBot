@@ -62,8 +62,15 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
             if valor_aria_checked == 'true':
                 print('\033[96m Captcha Resolved!')
                 break
+            else:
+                print('\033[93m Waiting Captcha Resolve...')
         except:
             print('\033[93m Waiting Captcha Resolve...')
+
+    time.sleep(2)
+
+    driver.switch_to.default_content()
+    driver.find_element(By.XPATH, '//*[@id="sign-in-wallapop"]').click()
 
     mainMenu = False
     while mainMenu == False:
