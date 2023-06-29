@@ -75,7 +75,7 @@ if authKey(key_value).status_code == 201:
             rowcount = 0
             for row in open("Sites/wallapop.csv"):
                 rowcount += 1
-                if wallapopData(rowcount)[0] == "Save" or "save":
+                if wallapopData(rowcount)[0] == "save":
                     addProductSM(wallapopData(rowcount)[1], wallapopData(rowcount)[2], wallapopData(rowcount)[3],
                                wallapopData(rowcount)[4], wallapopData(rowcount)[5],
                                wallapopCategorySwitch(wallapopData(rowcount)[6]),
@@ -84,8 +84,7 @@ if authKey(key_value).status_code == 201:
                                                      wallapopData(rowcount)[8]), wallapopConditionSwitch(wallapopData(rowcount)[9]),
                                wallapopData(rowcount)[10], wallapopData(rowcount)[11], wallapopData(rowcount)[12],
                                wallapopData(rowcount)[13], wallapopData(rowcount)[14], webhook_value)
-                elif wallapopData(rowcount)[0] == "Fast" or "fast":
-                    print('In maintenance')
+                if wallapopData(rowcount)[0] == "fast":
                     addProductFM(wallapopData(rowcount)[1], wallapopData(rowcount)[2], wallapopData(rowcount)[3],
                                  wallapopData(rowcount)[4], wallapopData(rowcount)[5],
                                  wallapopCategorySwitch(wallapopData(rowcount)[6]),
