@@ -13,12 +13,12 @@ def addProductSM(email, password, title, price, currency, category, subcategory,
     discord = Discord(url=webhook)
     shippingWeight = int(weight)
     chrome_options = Options()
-    chrome_options.add_argument('--disable-gpu')
+
     chrome_options.add_argument("--log-level=3")
     #  En este caso, se está excluyendo el interruptor 'enable-logging', que generalmente está habilitado para registrar mensajes de registro en la consola del navegador.
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
     # Chrome no se cerrará automáticamente cuando el script de Selenium termine de ejecutarse.
-    #chrome_options.add_experimental_option("detach", True)
+    chrome_options.add_experimental_option("detach", True)
 
     driver = webdriver.Chrome(chrome_options)
 
