@@ -9,7 +9,7 @@ import time, os, datetime
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-def addProduct(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight,webhook):
+def addProductSM(email, password, title, price, currency, category, subcategory, specify, productState, description, hashtags, photoFolderPath, shipping, weight,webhook):
     discord = Discord(url=webhook)
     shippingWeight = int(weight)
     chrome_options = Options()
