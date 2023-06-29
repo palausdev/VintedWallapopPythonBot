@@ -15,8 +15,11 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
 
     chrome_options = Options()
     #chrome_options.add_argument("--headless")
+    #chrome_options.headless = True
     chrome_options.add_argument("--log-level=3")
+    #  En este caso, se está excluyendo el interruptor 'enable-logging', que generalmente está habilitado para registrar mensajes de registro en la consola del navegador.
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    # Chrome no se cerrará automáticamente cuando el script de Selenium termine de ejecutarse.
     chrome_options.add_experimental_option("detach", True)
 
     driver = webdriver.Chrome(chrome_options)
@@ -25,7 +28,15 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
     time.sleep(1)
 
     print('\033[96m Login...')
-    driver.find_element(By.CLASS_NAME,'Welcome__btn-go-login-form').click()
+    #driver.find_element(By.CLASS_NAME,'Welcome__btn-go-login-form').click()
+    loggingButtonBool = False
+    while loggingButtonBool == False:
+        try:
+            driver.find_element(By.CLASS_NAME, 'Welcome__btn-go-login-form').click()
+            print('\033[92m Got Form!')
+            break
+        except:
+            print('\033[91m Form Failed!')
 
     print('\033[93m Inserting Email...')
     emailBool = False
@@ -53,6 +64,10 @@ def addProduct(email, password, title, price, currency, category, subcategory, s
             print('\033[91m Password Failed!')
 
     driver.switch_to.frame(0)
+
+    #Normal captcha 1 click
+    driver.find_element(By.XPATH, '//*[@id="recaptcha-anchor"]').click()
+
     captchaBool = False
     while captchaBool == False:
         time.sleep(2)
