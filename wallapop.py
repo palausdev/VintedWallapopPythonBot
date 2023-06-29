@@ -384,7 +384,7 @@ def addProductFM(email, password, title, price, currency, category, subcategory,
         try:
             #driver.find_element(By.XPATH, '//*[@id="access-modal"]/div/walla-dialog/div[1]/div/div[2]/div[1]/walla-button').click()
             #driver.find_element(By.XPATH, '//*[@id="access-modal"]/div/walla-dialog/div[1]/div/div[2]/div[3]/a').click()
-            driver.find_element(By.CLASS_NAME, "Welcome__btn-go-login-form").click()
+            #driver.find_element(By.CLASS_NAME, "Welcome__btn-go-login-form").click()
             print('\033[92m Got Form!')
             break
         except:
