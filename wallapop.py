@@ -362,23 +362,29 @@ def addProductFM(email, password, title, price, currency, category, subcategory,
     shippingWeight = int(weight)
     chrome_options = Options()
     chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument("--log-level=3")
+    #chrome_options.add_argument('--disable-gpu')
+    #chrome_options.add_argument("--log-level=3")
     #  En este caso, se está excluyendo el interruptor 'enable-logging', que generalmente está habilitado para registrar mensajes de registro en la consola del navegador.
-    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    #chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
     # Chrome no se cerrará automáticamente cuando el script de Selenium termine de ejecutarse.
     #chrome_options.add_experimental_option("detach", True)
 
     driver = webdriver.Chrome(chrome_options)
 
     driver.get("https://es.wallapop.com/login")
+
+    print(driver.page_source)
     time.sleep(1)
 
+    driver.switch_to.frame(0)
     print('\033[96m Login...')
     loggingButtonBool = False
     while loggingButtonBool == False:
+        print('\033[93m Getting form...')
         try:
-            driver.find_element(By.CLASS_NAME, 'Welcome__btn-go-login-form').click()
+            #driver.find_element(By.XPATH, '//*[@id="access-modal"]/div/walla-dialog/div[1]/div/div[2]/div[1]/walla-button').click()
+            #driver.find_element(By.XPATH, '//*[@id="access-modal"]/div/walla-dialog/div[1]/div/div[2]/div[3]/a').click()
+            driver.find_element(By.CLASS_NAME, "Welcome__btn-go-login-form").click()
             print('\033[92m Got Form!')
             break
         except:
