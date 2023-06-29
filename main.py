@@ -3,6 +3,7 @@ from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwit
 import requests, json, sys, os
 from wallapop import addProductSM, addProductFM
 from pyfiglet import figlet_format
+from gui import gui
 
 sys.stdout.write("\x1b]2;SnapSell - Menu\x07")
 
