@@ -697,7 +697,7 @@ def addProductFM(email, password, title, price, currency, category, subcategory,
                         "title": f"Product: {title} Uploaded!",
                         "fields": [
                             {"name": "Module", "value": "Wallapop", "inline": True},
-                            {"name": "Mode", "value": "Save Mode", "inline": True},
+                            {"name": "Mode", "value": "Fast Mode", "inline": True},
                             {"name": "Upload Time", "value": f"{segundos_transcurridos}", "inline": True},
                         ],
                         "footer": {
