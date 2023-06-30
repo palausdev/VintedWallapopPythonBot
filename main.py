@@ -67,6 +67,9 @@ print("Validating Key...")
 
 if authKey(key_value).status_code == 201:
     cls()
+    # Gui app
+    gui()
+
     menu()
     option = input(">> ")
 
