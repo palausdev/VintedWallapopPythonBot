@@ -1,4 +1,5 @@
 import customtkinter
+from tkinter import Tk, PhotoImage
 from wallapop import addProductSM
 from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwitch, wallapopSpecifySwitch, wallapopConditionSwitch
 
@@ -13,10 +14,13 @@ class App(customtkinter.CTk):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
+        home = PhotoImage(file = r"icons/Home.png")
+        home_hover = PhotoImage(file = r"icons/Home.png")
+
         self.frame = customtkinter.CTkFrame(self)
         self.frame.grid(row=0, column=0, padx=0, pady=(0, 0), sticky="nsw")
         # add widgets to app
-        self.button = customtkinter.CTkButton(self.frame, text="Tus muertos",width=5 ,command=self.button_click)
+        self.button = customtkinter.CTkButton(self.frame, image=home,text="", width=1, hover=True, hover_color="#06cdff", fg_color="transparent" ,command=self.button_click)
         self.button.grid(row=1, column=0, padx=10, pady=(10, 0), sticky="w")
 
     # add methods to app
