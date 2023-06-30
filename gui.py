@@ -7,13 +7,17 @@ customtkinter.set_appearance_mode("dark")
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        self.geometry("750x450")
+        self.geometry("1550x825")
         self.title("SnapSell")
         self.iconbitmap(r'LogoSnapSellExe.ico')
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure(0, weight=1)
 
+        self.frame = customtkinter.CTkFrame(self)
+        self.frame.grid(row=0, column=0, padx=0, pady=(0, 0), sticky="nsw")
         # add widgets to app
-        self.button = customtkinter.CTkButton(self, text="Save Mode", command=self.button_click)
-        self.button.grid(row=0, column=0, padx=20, pady=10)
+        self.button = customtkinter.CTkButton(self.frame, text="Tus muertos",width=5 ,command=self.button_click)
+        self.button.grid(row=1, column=0, padx=10, pady=(10, 0), sticky="w")
 
     # add methods to app
     def button_click(self):
