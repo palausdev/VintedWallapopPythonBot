@@ -3,7 +3,7 @@ from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwit
 import requests, json, sys, os
 from wallapop import addProductSM, addProductFM
 from pyfiglet import figlet_format
-from gui import gui
+from gui import App
 
 sys.stdout.write("\x1b]2;SnapSell - Menu\x07")
 
@@ -68,8 +68,7 @@ print("Validating Key...")
 if authKey(key_value).status_code == 201:
     cls()
     # Gui app
-    gui()
-
+    App()
     menu()
     option = input(">> ")
 
