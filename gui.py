@@ -1,5 +1,6 @@
 import customtkinter
 from tkinter import Tk, PhotoImage
+from PIL import Image
 from wallapop import addProductSM
 from config import wallapopData, wallapopCategorySwitch, wallapopSubcategorySwitch, wallapopSpecifySwitch, wallapopConditionSwitch
 
@@ -14,14 +15,27 @@ class App(customtkinter.CTk):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
-        home = PhotoImage(file = r"icons/Home.png")
-        home_hover = PhotoImage(file = r"icons/Home.png")
-
         self.frame = customtkinter.CTkFrame(self)
         self.frame.grid(row=0, column=0, padx=0, pady=(0, 0), sticky="nsw")
+
+        # Images
+        self.home = customtkinter.CTkImage(dark_image=Image.open("icons/home.png"),
+                                           size=(32, 32))
+        self.logo = customtkinter.CTkImage(dark_image=Image.open("icons/logo.png"),
+                                           size=(32, 32))
+        self.config = customtkinter.CTkImage(dark_image=Image.open("icons/config.png"),
+                                           size=(32, 32))
+
         # add widgets to app
-        self.button = customtkinter.CTkButton(self.frame, image=home,text="", width=1, hover=True, hover_color="#06cdff", fg_color="transparent" ,command=self.button_click)
-        self.button.grid(row=1, column=0, padx=10, pady=(10, 0), sticky="w")
+        #self.label = customtkinter.CTkLabel(self.frame, image=self.logo, text="", width=1)
+        #self.label.grid(row=1, column=0, padx=1, pady=(1, 0), sticky="w")
+
+        self.button = customtkinter.CTkButton(self.frame, image=self.home, text="", width=1, hover=True, hover_color="#27bed5", fg_color="transparent", command=self.button_click)
+        self.button.grid(row=2, column=0, padx=1, pady=(1, 0), sticky="w")
+
+        self.configbtn = customtkinter.CTkButton(self.frame, image=self.config, text="", width=1, hover=True,
+                                              hover_color="#27bed5", fg_color="transparent", command=self.button_click)
+        self.configbtn.grid(row=10, column=0, padx=1, pady=(1, 2), sticky="w")
 
     # add methods to app
     def button_click(self):
